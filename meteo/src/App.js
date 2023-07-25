@@ -1,5 +1,6 @@
 import './App.css';
 import { useEffect, useRef, useState } from 'react';
+import GetImg from './getImg';
 
 
 function MeteoComponent(value){
@@ -8,6 +9,7 @@ function MeteoComponent(value){
     <article>
       <h1>J + {info.day} <br /></h1>
       <div className='t'>{info.tmin}° - {info.tmax}°</div>
+      <GetImg i={info.weather}/>
     </article>
   )
 }
@@ -24,6 +26,7 @@ function App() {
           .then((response) => {response.json().then((result) => { setInfo(result.forecast)
                                                                   setCity(result.city.name + " (" + result.city.cp + ")")
                                                                   console.log(city)
+                                                                  console.log(result.forecast)
             }).catch()}
       )})})
         .catch((error) => {console.log('error = ' + error)})}
