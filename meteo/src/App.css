@@ -49,3 +49,9 @@ span{
   display: flex;
   justify-content: center;
 }
+
+
+h2{
+  position: absolute;
+  top: -150px;
+}

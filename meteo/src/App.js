@@ -22,7 +22,8 @@ function App() {
       .then((response) => {response.json().then((result) => {
             result.cities.length === 0 ? setCity("Cette ville n'exste pas, ou n'est pas en France") : fetch(`https://api.meteo-concept.com/api/forecast/daily?token=296f93ec67c6cc75bff76ae9e9e10efba2cc633725833013f6b7f0f377be4f5b&insee=${result.cities[0].insee}`)
           .then((response) => {response.json().then((result) => { setInfo(result.forecast)
-                                                                  console.log(info[0])
+                                                                  setCity(result.city.name + " (" + result.city.cp + ")")
+                                                                  console.log(city)
             }).catch()}
       )})})
         .catch((error) => {console.log('error = ' + error)})}
@@ -44,7 +45,7 @@ function App() {
       </div>
       {info[0] ? 
         <div className='txt'>
-          <h2></h2>  
+          <h2>{city} :</h2>  
           {[...new Array(8)].map((_, i) => (<MeteoComponent value={info[i]} />))}
         </div>
         : ""
